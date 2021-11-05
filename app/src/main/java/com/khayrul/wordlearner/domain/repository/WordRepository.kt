@@ -1,6 +1,6 @@
-package com.khayrul.wordlearner.feature_words.domain.repository
+package com.khayrul.wordlearner.domain.repository
 
-import com.khayrul.wordlearner.feature_words.domain.model.Word
+import com.khayrul.wordlearner.domain.model.Word
 import kotlinx.coroutines.flow.Flow
 
 interface WordRepository {

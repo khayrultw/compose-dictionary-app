@@ -1,4 +1,4 @@
-package com.khayrul.wordlearner.feature_words.domain.model
+package com.khayrul.wordlearner.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class Word(
     @PrimaryKey
     val id: Int? = null,
-    val word: String,
-    val definition: String
+    val title: String,
+    val definition: String,
+    val date: String
 )

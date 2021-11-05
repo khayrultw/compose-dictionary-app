@@ -1,8 +1,8 @@
-package com.khayrul.wordlearner.feature_words.data.repository
+package com.khayrul.wordlearner.data.repository
 
-import com.khayrul.wordlearner.feature_words.data.data_source.WordDao
-import com.khayrul.wordlearner.feature_words.domain.model.Word
-import com.khayrul.wordlearner.feature_words.domain.repository.WordRepository
+import com.khayrul.wordlearner.data.data_source.WordDao
+import com.khayrul.wordlearner.domain.model.Word
+import com.khayrul.wordlearner.domain.repository.WordRepository
 import kotlinx.coroutines.flow.Flow
 
 class WordRepositoryImpl(

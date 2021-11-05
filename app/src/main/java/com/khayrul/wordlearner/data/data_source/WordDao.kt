@@ -1,7 +1,7 @@
-package com.khayrul.wordlearner.feature_words.data.data_source
+package com.khayrul.wordlearner.data.data_source
 
 import androidx.room.*
-import com.khayrul.wordlearner.feature_words.domain.model.Word
+import com.khayrul.wordlearner.domain.model.Word
 import kotlinx.coroutines.flow.Flow
 
 @Dao
