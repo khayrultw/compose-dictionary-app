@@ -8,6 +8,7 @@ import com.khayrul.wordlearner.data.repository.WordRepositoryImpl
 import com.khayrul.wordlearner.domain.repository.WordRepository
 import com.khayrul.wordlearner.domain.use_case.AddWordUseCase
 import com.khayrul.wordlearner.domain.use_case.DeleteWordUseCase
+import com.khayrul.wordlearner.domain.use_case.GetWordUseCase
 import com.khayrul.wordlearner.domain.use_case.WordUseCases
 import dagger.Module
 import dagger.Provides
@@ -40,9 +41,10 @@ object AppModule {
     @Singleton
     fun provideWordUseCases(repository: WordRepository): WordUseCases {
         return WordUseCases(
-            getWordsUseCase = GetWordsUseCase(repository),
-            addWordUseCase = AddWordUseCase(repository),
-            deleteWordUseCase = DeleteWordUseCase(repository)
+            getWords = GetWordsUseCase(repository),
+            addWord = AddWordUseCase(repository),
+            deleteWord = DeleteWordUseCase(repository),
+            getWord = GetWordUseCase(repository)
         )
     }
 }
