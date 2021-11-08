@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -38,12 +39,12 @@ fun WordsScreen(
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add Word")
             }
         },
-        scaffoldState = scaffoldState
+        scaffoldState = scaffoldState,
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(8.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -60,34 +61,41 @@ fun WordsScreen(
                     Icon(imageVector = Icons.Default.Sort, contentDescription = "Sort")
                 }
             }
-            Spacer(modifier = Modifier.height(8.dp))
             if(state.isOderSectionVisible) {
                 OrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(8.dp),
                     wordOrder = state.wordOrder,
                     onOrderChange = { wordOrder ->
                         wordsViewModel.onEvent(WordsEvent.Order(wordOrder))
                     }
                 )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
                 items(state.words) { word ->
-                    WordItem(
+                    Card(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .padding(1.dp)
                             .clickable {
                                 navController.navigate(
                                     Screen.AddEditWordScreen.route + "?wordId=${word.id}"
                                 )
                             },
-                        word = word
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
+                        elevation = 4.dp
+                    ) {
+                        WordItem(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(8.dp),
+                            word = word
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
         }

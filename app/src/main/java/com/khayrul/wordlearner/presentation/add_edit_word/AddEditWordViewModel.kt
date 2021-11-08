@@ -84,7 +84,8 @@ class AddEditWordViewModel @Inject constructor(
                                 title = wordTitle.value.text,
                                 definition = wordDefinition.value.text,
                                 date = System.currentTimeMillis(),
-                                id = currentWordId
+                                id = currentWordId,
+                                status = "Learning"
                             )
                         )
                         _eventFlow.emit(UiEvent.SaveWord)

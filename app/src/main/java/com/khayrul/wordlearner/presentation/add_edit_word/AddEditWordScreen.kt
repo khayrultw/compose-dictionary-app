@@ -68,7 +68,8 @@ fun AddEditWordScreen(
                     viewModel.onEvent(AddEditWordEvent.ChangeTitleFocus(it))
                 },
                 singleLine = true,
-                isHintVisible = title.isHintVisible && title.text == ""
+                isHintVisible = title.isHintVisible && title.text == "",
+                modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
             HintTextField(
@@ -83,7 +84,9 @@ fun AddEditWordScreen(
                 },
                 isHintVisible = definition.isHintVisible && definition.text == "",
 
-                modifier = Modifier.fillMaxHeight()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(128.dp)
             )
         }
     }

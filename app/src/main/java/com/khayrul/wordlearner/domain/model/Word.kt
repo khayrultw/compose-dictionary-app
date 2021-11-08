@@ -11,6 +11,7 @@ data class Word(
     val id: Int? = null,
     val title: String,
     val definition: String,
+    val status: String,
     val date: Long
 )
 

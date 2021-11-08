@@ -24,7 +24,7 @@ fun OrderSection(
                 selected = wordOrder is WordOrder.Title,
                 onClick = { onOrderChange(WordOrder.Title(wordOrder.orderType)) }
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.width(16.dp))
             DefaultRadioButton(
                 text = "Date",
                 selected = wordOrder is WordOrder.Date,
@@ -44,7 +44,7 @@ fun OrderSection(
                     onOrderChange(wordOrder.copy(OrderType.Ascending))
                 }
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.width(16.dp))
             DefaultRadioButton(
                 text = "Descending",
                 selected = wordOrder.orderType is OrderType.Descending,
