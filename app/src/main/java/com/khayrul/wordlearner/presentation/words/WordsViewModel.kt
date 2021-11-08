@@ -40,6 +40,8 @@ class WordsViewModel @Inject constructor(
                 _state.value = state.value.copy(
                     wordOrder = event.wordOrder
                 )
+
+                getWords(event.wordOrder)
             }
 
             is WordsEvent.DeleteWord -> {
@@ -65,7 +67,7 @@ class WordsViewModel @Inject constructor(
         }
     }
 
-    private fun getWords(wordOrder: WordOrder) {
+    private fun getWords(wordOrder: WordOrder = WordOrder.Title(OrderType.Ascending)) {
         getWordsJob?.cancel()
 
         getWordsJob = wordUseCase.getWords(wordOrder)
