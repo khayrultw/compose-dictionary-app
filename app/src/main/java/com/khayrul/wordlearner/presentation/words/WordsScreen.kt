@@ -14,9 +14,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.khayrul.wordlearner.R
 import com.khayrul.wordlearner.presentation.util.Screen
 import com.khayrul.wordlearner.presentation.words.components.OrderSection
 import com.khayrul.wordlearner.presentation.words.components.WordItem
@@ -54,7 +56,7 @@ fun WordsScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Your words",
+                    text = stringResource(R.string.your_word),
                     style = MaterialTheme.typography.h5
                 )
                 IconButton(
@@ -108,20 +110,20 @@ fun WordsScreen(
                 onDismissRequest = {
                     wordsViewModel.onEvent(WordsEvent.DismissAlert)
                 },
-                title = { Text(text = "Confirmation!") },
-                text = { Text(text = "The word will be permanently deleted. Are you sure?") },
+                title = { Text(text = stringResource(R.string.alert_title)) },
+                text = { Text(text = stringResource(R.string.alert_text)) },
                 confirmButton = {
                     TextButton(
                         onClick = { wordsViewModel.onEvent(WordsEvent.DeleteWord) }
                     ) {
-                        Text(text = "Confirm")
+                        Text(text = stringResource(R.string.alert_confirm_button_text))
                     }
                 },
                 dismissButton = {
                     TextButton(
                         onClick = { wordsViewModel.onEvent(WordsEvent.DismissAlert) }
                     ) {
-                        Text(text = "Cancel")
+                        Text(text = stringResource(R.string.alert_cancel_button_text))
                     }
                 }
             )
