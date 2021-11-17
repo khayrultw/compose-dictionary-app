@@ -2,6 +2,7 @@ package com.khayrul.wordlearner.presentation.add_edit_word.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
@@ -37,8 +38,7 @@ fun HintTextField(
                 onValueChange = onValueChange,
                 singleLine = singleLine,
                 textStyle = textStyle,
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = modifier
                     .onFocusChanged {
                         onFocusChange(it)
                     }

@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -26,6 +25,7 @@ fun WordsScreen(
     wordsViewModel: WordsViewModel = hiltViewModel()
 ) {
     val state = wordsViewModel.state.value
+    val showAlert = wordsViewModel.showDialog.value
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     Scaffold(
@@ -90,14 +90,39 @@ fun WordsScreen(
                     ) {
                         WordItem(
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp),
-                            word = word
+                                .fillMaxWidth(),
+                            word = word,
+                            onDelete = {
+                                wordsViewModel.onEvent(WordsEvent.ShowAlertToDeleteWord(word))
+                            }
                         )
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                 }
             }
+        }
+        if (showAlert) {
+            AlertDialog(
+                onDismissRequest = {
+                    wordsViewModel.onEvent(WordsEvent.DismissAlert)
+                },
+                title = { Text(text = "Confirmation!") },
+                text = { Text(text = "The word will be permanently deleted. Are you sure?") },
+                confirmButton = {
+                    TextButton(
+                        onClick = { wordsViewModel.onEvent(WordsEvent.DeleteWord) }
+                    ) {
+                        Text(text = "Confirm")
+                    }
+                },
+                dismissButton = {
+                    TextButton(
+                        onClick = { wordsViewModel.onEvent(WordsEvent.DismissAlert) }
+                    ) {
+                        Text(text = "Cancel")
+                    }
+                }
+            )
         }
     }
 }

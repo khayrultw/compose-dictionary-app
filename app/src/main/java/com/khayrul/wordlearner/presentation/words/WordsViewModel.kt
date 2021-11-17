@@ -22,8 +22,13 @@ class WordsViewModel @Inject constructor(
     private val _state = mutableStateOf<WordsState>(WordsState())
     val state = _state
 
+    private val _showDialog = mutableStateOf<Boolean>(false)
+    val showDialog = _showDialog
+
     private var recentlyDeletedWord: Word? = null
     private var getWordsJob: Job? = null
+
+    private var wordToBeDeleted: Word? = null
 
     init {
         getWords(WordOrder.Title(OrderType.Ascending))
@@ -45,9 +50,13 @@ class WordsViewModel @Inject constructor(
             }
 
             is WordsEvent.DeleteWord -> {
+                _showDialog.value = false
                 viewModelScope.launch {
-                    wordUseCase.deleteWord(event.word)
-                    recentlyDeletedWord = event.word
+                    wordToBeDeleted?.let {
+                        wordUseCase.deleteWord(it)
+                    }
+                    recentlyDeletedWord = wordToBeDeleted
+                    wordToBeDeleted = null
                 }
             }
 
@@ -63,6 +72,16 @@ class WordsViewModel @Inject constructor(
                 _state.value = _state.value.copy(
                     isOderSectionVisible = !state.value.isOderSectionVisible
                 )
+            }
+
+            is WordsEvent.ShowAlertToDeleteWord -> {
+                wordToBeDeleted = event.word
+                _showDialog.value = true
+            }
+
+            is WordsEvent.DismissAlert -> {
+                _showDialog.value = false
+                wordToBeDeleted = null
             }
         }
     }

@@ -39,7 +39,7 @@ class AddEditWordViewModel @Inject constructor(
             if(wordId != -1) {
                 viewModelScope.launch {
                     wordUseCases.getWord(wordId)?.also { word ->
-                        currentWordId = currentWordId
+                        currentWordId = wordId
                         _wordTitle.value = wordTitle.value.copy(
                             text = word.title,
                             isHintVisible = false
