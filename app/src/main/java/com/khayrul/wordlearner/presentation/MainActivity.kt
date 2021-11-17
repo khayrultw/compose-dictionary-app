@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.khayrul.wordlearner.presentation.add_edit_word.AddEditWordScreen
+import com.khayrul.wordlearner.presentation.splash.Splash
 import com.khayrul.wordlearner.presentation.util.Screen
 import com.khayrul.wordlearner.presentation.words.WordsScreen
 import com.khayrul.wordlearner.ui.theme.WordLearnerTheme
@@ -33,8 +34,13 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.WordsScreen.route
+                        startDestination = Screen.SplashScreen.route
                     ) {
+                        composable(
+                            route = Screen.SplashScreen.route,
+                        ) {
+                            Splash(navController = navController)
+                        }
                         composable(
                             route = Screen.WordsScreen.route,
                         ) {
